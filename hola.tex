@@ -74,14 +74,14 @@
 
 \subsection*{Modelo promedio}
 \begin{align*}
-    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} \left( v_{s}^{abc}(t) - R_{s} i_{s}^{abc}(t) - T_{ln} \left[ \frac{m_r^{abc}(t)}{2} v_{dc_1}(t) + \frac{m_r^{abc}(t)}{2} v_{dc_2}(t) \right] \right) \\[10pt]
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} \left( v_{s}^{abc}(t) - R_{s} i_{s}^{abc}(t) -  \left[ \frac{m_r^{abc}(t)}{2} v_{dc_1}(t) + \frac{m_r^{abc}(t)}{2} v_{dc_2}(t) \right] \right) \\[10pt]
     \frac{d v_{dc_1}(t)}{d t} &= \frac{1}{2 C_{dc}} \left( [1 - m_{b}(t)] i_{PV}(t) - \frac{2 v_{dc_1}(t)}{R_{C_{dc}}} + \frac{{m_r^{abc}(t)}^T}{2} i_{s}^{abc}(t) \right) \\[10pt]
     \frac{d v_{dc_2}(t)}{d t} &= \frac{1}{2 C_{dc}} \left( [1 - m_{b}(t)] i_{PV}(t) - \frac{2 v_{dc_2}(t)}{R_{C_{dc}}} + \frac{{m_r^{abc}(t)}^{T}}{2} i_{s}^{abc}(t) \right) \\[10pt]
     \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} \left( v_{PV}(i_{PV}) - (1 - m_{b}(t)) (v_{dc_1}(t) + v_{dc_2}(t)) \right) \\ 
     v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
 \end{align*}
 \begin{align*}
-    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
     \frac{d v_{dc_1}(t)}{d t} &= \frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t) - \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_1}(t) + \frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t) \\[12pt]
     \frac{d v_{dc_2}(t)}{d t} &= \frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t) - \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_2}(t) + \frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t) \\[12pt]
     \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_1}(t) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_2}(t) \\[12pt]
@@ -105,7 +105,7 @@
 \end{align*}
 
 \begin{align*}
-    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
     \der{v_{dc}(t)}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{(m_r^{abc}(t))^T}{2}i_s^{abc}(t) \\[12pt]
     \der{\delta v_{dc}}&= -\frac{1}{R_{C_{dc}} C_{dc}}\delta v_{dc}(t)\\[12pt]
     \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_1}(t) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_2}(t) \\[12pt]
@@ -115,10 +115,32 @@
 Debido a que $\delta v_{dc}(t)$ es una variable que esta desacoplada del sistema, o sea no depende de ninguna otra variable, y en este caso es siempre estable. Esta se puede eliminar ya que no aporta a la dinamica del convertidor.
 
 \begin{align*}
-    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
-    \der{v_{dc}(t)}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{(m_r^{abc}(t))^T}{2}i_s^{abc}(t) \\[12pt]
-    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_1}(t) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_2}(t) \\[12pt]
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{m_r^{abc}(t)}{2 L_s} v_{dc}(t)  \\[12pt]
+    \der{v_{dc}}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{(m_r^{abc}(t))^T}{2}i_s^{abc}(t) \\[12pt]
+    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc}(t) \\[12pt]
     v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
 \end{align*}
-hola tomas del futuro jeje
+
+\subsection*{Modelo de ejes rotatiorios}
+Considerar que $x_r^{abc}=\begin{bmatrix} i_s^{abc} & v_{dc} & i_\text{PV}\end{bmatrix}^T$, $i_s^{abc}=T_{dq0-abc}(t)\cdot i_s^{dq0}(t)$, $v_s^{abc}=T_{dq0-abc}(t)\cdot v_s^{dq0}(t)$ , $m_r^{abc}(t)=T_{dq0-abc}(t)\cdot m_r^{dq0}(t)$
+\begin{align*}
+    \frac{d(T_{dq0-abc}(t)\cdot i_s^{dq0}(t))}{d t} &= \frac{1}{L_{s}} \left(T_{dq0-abc}(t) \cdot v_{s}^{dq0}(t)\right) - \frac{R_{s}}{L_{s}} \left(T_{dq0-abc}(t) \cdot i_s^{dq0}(t)\right) \\ &- \frac{v_{dc}(t)}{2 L_s}\left(T_{dq0-abc}(t)\cdot m_r^{dq0}(t)\right) \\[12pt]
+    \frac{d(T_{dq0-abc}(t)\cdot i_s^{dq0}(t))}{d t} &=T_{dq0-abc}(t)\der{i_s^{dq0}}+\der{T_{dq0-abc}}i_s^{dq0}(t)\\[12pt]
+    T_{dq0-abc}(t)\der{i_s^{dq0}}+\der{T_{dq0-abc}}i_s^{dq0}(t) &=\frac{1}{L_{s}} \left(T_{dq0-abc}(t) \cdot v_{s}^{dq0}(t)\right) - \frac{R_{s}}{L_{s}} \left(T_{dq0-abc}(t) \cdot i_s^{dq0}(t)\right) \\ &- \frac{v_{dc}(t)}{2 L_s}\left(T_{dq0-abc}(t)\cdot m_r^{dq0}(t)\right) \bigg / T_{abc-dq0}(t)\cdot \\[12pt]
+    \der{i_s^{dq0}}+T_{abc-dq0}\cdot\der{T_{dq0-abc}}i_s^{dq0}(t) &= \frac{v_s^{dq0}(t)}{L_s}-\frac{R_s}{L_s}i_s^{dq0}(t)-\frac{v_{dc}(t)}{2L_s}m_r^{dq0}(t) \\[12pt]
+    \der{i_s^{dq0}} &= \frac{v_s^{dq0}(t)}{L_s}-\frac{R_s}{L_s}i_s^{dq0}(t)- W\cdot i_s^{dq0}(t)-\frac{v_{dc}(t)}{2L_s}m_r^{dq0}(t)
+\end{align*}
+
+\begin{align*}
+    \der{v_{dc}}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{(T_{dq0-abc}(t)\cdot m_r^{dq0}(t))^T}{2}\left(T_{dq0-abc}(t)\cdot i_s^{dq0}(t)\right) \\[12pt]
+    \der{v_{dc}}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{({m_r^{dq0}(t)})^T ({T_{dq0-abc}(t)})^T}{2}\left(T_{dq0-abc}(t)\cdot i_s^{dq0}(t)\right)   \\[12pt]
+    \der{v_{dc}}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{2 C_{dc}}({m_r^{dq0}(t)})^T ({T_{abc-dq0}(t)})\left(T_{dq0-abc}(t) \cdot i_s^{dq0}(t)\right)   \\[12pt]
+    \der{v_{dc}}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{2 C_{dc}}\left(({m_r^{dq0}(t)})^T \cdot i_s^{dq0}(t) \right) \\[12pt]
+\end{align*}
+
+\begin{align*}
+    \der{i_s^{dq0}} &= \frac{v_s^{dq0}(t)}{L_s}-\frac{R_s}{L_s}i_s^{dq0}(t)- W\cdot i_s^{dq0}(t)-\frac{v_{dc}(t)}{2L_s}m_r^{dq0}(t) \\[12pt]
+    \der{v_{dc}}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{2 C_{dc}}\left(({m_r^{dq0}(t)})^T \cdot i_s^{dq0}(t) \right) \\[12pt] 
+    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc}(t) \\[12pt]
+\end{align*}
 \end{document}
