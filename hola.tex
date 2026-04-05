@@ -1,0 +1,123 @@
+\documentclass[11pt, a4paper]{article}
+% --- Paquetes Esenciales ---
+\usepackage[utf8]{inputenc}    % Codificación de caracteres
+\usepackage[spanish]{babel}    % Idioma español
+\usepackage[T1]{fontenc}       % Mejora la renderización de fuentes
+\usepackage{amsmath}
+\usepackage{cancel}
+% --- Configuración de Márgenes ---
+\usepackage[margin=1.2in]{geometry}
+
+% --- Metadatos del Documento ---
+\title{\Huge \textbf{Multivariable}}
+\author{\large Tomás Aguayo}
+\date{\small \today}
+
+
+%macros
+\newcommand{\der}[1]{\frac{d #1(t)}{dt}}
+
+\begin{document}
+\maketitle
+\section*{Primer Modelo}
+\begin{align*}
+    v_s^a&=R_si_s^a+L_s\frac{di_s^a}{dt}+v_r^a \\ 
+    v_s^b&=R_si_s^b+L_s\frac{di_s^b}{dt}+v_r^b \\ 
+    v_s^c&=R_si_s^c+L_s\frac{di_s^c}{dt}+v_r^c \\ 
+    v_s^{abc}&=R_s i_s^{abc}+L_s\frac{di_s^{abc}}{dt}+v_r^{abc}
+\end{align*}
+\begin{align*}
+    i_D&+i_{dcp} = i_{dc_1}+i_{R_{C_{dc}}} \\ 
+    i_D &= 2C_{dc}\frac{dv_{dc_1}}{dt}+\frac{2v_{dc_1}}{R_{C_{dc}}}-i_{dcp} \tag{1} \label{eq:1} \\ 
+    i_D &= i_{dc_2}+i_{R_{C_{dc}}}+i_{dcn} \\ 
+    i_D &= 2C_{dc}\frac{dv_{dc_2}}{dt}+\frac{2v_{dc_2}}{R_{C_dc}}+i_{dcn} \tag{2} \label{eq:2}
+\end{align*}
+\begin{align*}
+    v_{PV}&=v_{L_{dc}}+v_{sb}\\ 
+    v_{PV}&=L_{dc}\frac{di_{PV}}{dt}+v_{sb}
+\end{align*}
+
+\begin{align*}
+    v_{rN}^{abc}&=s_{rp}^{abc}v_{dc_1}-s_{rn}^{abc}v_{dc_2} \\ 
+    i_{dcp}&={s_{rp}^{abc}}^Ti_{s}^{abc} \\
+    i_{dcn}&={s_{rn}^{abc}}^T i_{s}^{abc} \\ 
+    i_D&=(1-s_b)i_{PV} \\ 
+    v_{sb}&=(1-s_b)v_{dc} \\ 
+    i_{PV}&=i_{PV_\text{max}}\left(1-e^{\frac{v_{PV}-v_{PV_\text{max}}}{k_{PV}}}\right) \\ 
+    v_{dc}&=v_{dc_1}+v_{dc_2}
+\end{align*}
+    
+\begin{align*}
+    v_s^{abc}&=R_s i_s^{abc}+L_s\frac{di_s^{abc}}{dt}+v_{rn}^{abc} \\ 
+    (1-s_b)i_{PV} &= 2C_{dc}\frac{dv_{dc_1}}{dt}+\frac{2v_{dc_1}}{R_{C_{dc}}}-{s_{rp}^{abc}}^Ti_{s}^{abc} \\
+    (1-s_b)i_{PV} &= 2C_{dc}\frac{dv_{dc_2}}{dt}+\frac{2v_{dc_2}}{R_{C_dc}}+{s_{rn}^{abc}}^T i_{s}^{abc} \\ 
+    v_{PV}&=L_{dc}\frac{di_{PV}}{dt}+(1-s_b)(v_{dc_1}+v_{dc_2}) \\ 
+    v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
+\end{align*}
+
+
+\begin{align*}
+    v_s^{abc}&=R_s i_s^{abc}+L_s\frac{di_s^{abc}}{dt}+T_{ln}(s_{rp}^{abc}v_{dc_1}-s_{rn}^{abc}v_{dc_2}) \\ 
+    (1-s_b)i_{PV} &= 2C_{dc}\frac{dv_{dc_1}}{dt}+\frac{2v_{dc_1}}{R_{C_{dc}}}-{s_{rp}^{abc}}^Ti_{s}^{abc} \\
+    (1-s_b)i_{PV} &= 2C_{dc}\frac{dv_{dc_2}}{dt}+\frac{2v_{dc_2}}{R_{C_dc}}+{s_{rn}^{abc}}^T i_{s}^{abc} \\ 
+    v_{PV}&=L_{dc}\frac{di_{PV}}{dt}+(1-s_b)(v_{dc_1}+v_{dc_2}) \\ 
+    v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
+\end{align*}
+\subsection*{Modelo conmutado}
+\begin{align*}
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} \left( v_{s}^{abc}(t) - R_{s} i_{s}^{abc}(t) - T_{ln} \left[ s_{rp}^{abc}(t) v_{dc_1}(t) - s_{rn}^{abc}(t) v_{dc_2}(t) \right] \right) \\[10pt]
+    \frac{d v_{dc_1}(t)}{d t} &= \frac{1}{2 C_{dc}} \left( (1 - s_{b}(t)) i_{PV}(t) - \frac{2 v_{dc_1}(t)}{R_{C_{dc}}} + [s_{rp}^{abc}(t)]^{T} i_{s}^{abc}(t) \right) \\[10pt]
+    \frac{d v_{dc_2}(t)}{d t} &= \frac{1}{2 C_{dc}} \left( (1 - s_{b}(t)) i_{PV}(t) - \frac{2 v_{dc_2}(t)}{R_{C_{dc}}} - [s_{rn}^{abc}(t)]^{T} i_{s}^{abc}(t) \right) \\[10pt]
+    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} \left( v_{PV}(i_{PV}) - (1 - s_{b}(t)) (v_{dc_1}(t) + v_{dc_2}(t)) \right) \\ 
+    v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
+\end{align*}
+
+\subsection*{Modelo promedio}
+\begin{align*}
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} \left( v_{s}^{abc}(t) - R_{s} i_{s}^{abc}(t) - T_{ln} \left[ \frac{m_r^{abc}(t)}{2} v_{dc_1}(t) + \frac{m_r^{abc}(t)}{2} v_{dc_2}(t) \right] \right) \\[10pt]
+    \frac{d v_{dc_1}(t)}{d t} &= \frac{1}{2 C_{dc}} \left( [1 - m_{b}(t)] i_{PV}(t) - \frac{2 v_{dc_1}(t)}{R_{C_{dc}}} + \frac{{m_r^{abc}(t)}^T}{2} i_{s}^{abc}(t) \right) \\[10pt]
+    \frac{d v_{dc_2}(t)}{d t} &= \frac{1}{2 C_{dc}} \left( [1 - m_{b}(t)] i_{PV}(t) - \frac{2 v_{dc_2}(t)}{R_{C_{dc}}} + \frac{{m_r^{abc}(t)}^{T}}{2} i_{s}^{abc}(t) \right) \\[10pt]
+    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} \left( v_{PV}(i_{PV}) - (1 - m_{b}(t)) (v_{dc_1}(t) + v_{dc_2}(t)) \right) \\ 
+    v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
+\end{align*}
+\begin{align*}
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
+    \frac{d v_{dc_1}(t)}{d t} &= \frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t) - \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_1}(t) + \frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t) \\[12pt]
+    \frac{d v_{dc_2}(t)}{d t} &= \frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t) - \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_2}(t) + \frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t) \\[12pt]
+    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_1}(t) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_2}(t) \\[12pt]
+    v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
+\end{align*}
+
+\subsection*{Modelo simplificado}
+\begin{align*}
+    v_{dc}&=v_{dc_1}(t)+v_{dc_2}(t) \\[10pt]
+    \der{v_{dc}}&=\der{v_{dc_1}}+\der{v_{dc_2}} \\ 
+    &=\frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t) - \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_1}(t) + \frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t) \\ &+ \frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t) - \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_2}(t) + \frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t) \\[10pt]
+    &=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}(v_{dc_1}(t)+v_{dc_2}(t))+\frac{1}{C_{dc}}\frac{(m_r^{abc}(t))^T}{2}i_s^{abc}(t) \\[10pt]
+     \der{v_{dc}(t)}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{(m_r^{abc}(t))^T}{2}i_s^{abc}(t)
+\end{align*}
+\begin{align*}
+    \delta v_{dc}(t) &= v_{dc_1}(t) - v_{dc_2}(t) \\[10pt]
+    \der{\delta v_{dc}} &= \der{v_{dc_1}}-\der{v_{dc_2}}\\[10pt]
+    &=\cancel{\frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t)} - \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_1}(t) + \xcancel{\frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t)}  \\ &\cancel{- \frac{1 - m_{b}(t)}{2 C_{dc}} i_{PV}(t)} + \frac{1}{R_{C_{dc}} C_{dc}} v_{dc_2}(t) - \xcancel{\frac{(m_r^{abc}(t))^T}{4 C_{dc}} i_{s}^{abc}(t)} \\[10pt]
+    \der{\delta v_{dc}}&= -\frac{1}{R_{C_{dc}} C_{dc}}(v_{dc_1}(t)-v_{dc_2}(t)) \\[10pt]
+    \der{\delta v_{dc}}&= -\frac{1}{R_{C_{dc}} C_{dc}}\delta v_{dc}(t)
+\end{align*}
+
+\begin{align*}
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
+    \der{v_{dc}(t)}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{(m_r^{abc}(t))^T}{2}i_s^{abc}(t) \\[12pt]
+    \der{\delta v_{dc}}&= -\frac{1}{R_{C_{dc}} C_{dc}}\delta v_{dc}(t)\\[12pt]
+    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_1}(t) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_2}(t) \\[12pt]
+    v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
+\end{align*}
+
+Debido a que $\delta v_{dc}(t)$ es una variable que esta desacoplada del sistema, o sea no depende de ninguna otra variable, y en este caso es siempre estable. Esta se puede eliminar ya que no aporta a la dinamica del convertidor.
+
+\begin{align*}
+    \frac{d i_{s}^{abc}(t)}{d t} &= \frac{1}{L_{s}} v_{s}^{abc}(t) - \frac{R_{s}}{L_{s}} i_{s}^{abc}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_1}(t) - \frac{T_{ln} m_r^{abc}(t)}{2 L_s} v_{dc_2}(t) \\[12pt]
+    \der{v_{dc}(t)}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{C_{dc}}\frac{(m_r^{abc}(t))^T}{2}i_s^{abc}(t) \\[12pt]
+    \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_1}(t) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc_2}(t) \\[12pt]
+    v_{PV}(i_{PV})&=V_{PV_\text{max}}+k_{PV}\ln\left(1-\frac{i_{PV}}{i_{PV\text{max}}}\right)
+\end{align*}
+\end{document}
