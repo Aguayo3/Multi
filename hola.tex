@@ -143,4 +143,39 @@ Considerar que $x_r^{abc}=\begin{bmatrix} i_s^{abc} & v_{dc} & i_\text{PV}\end{b
     \der{v_{dc}}&=\frac{1-m_b(t)}{C_{dc}}i_{\text{PV}}(t)-\frac{1}{R_{C_{dc}}C_{dc}}v_{dc}(t)+\frac{1}{2 C_{dc}}\left(({m_r^{dq0}(t)})^T \cdot i_s^{dq0}(t) \right) \\[12pt] 
     \frac{d i_{PV}(t)}{d t} &= \frac{1}{L_{dc}} v_{PV}(i_{PV}) - \frac{1 - m_{b}(t)}{L_{dc}} v_{dc}(t) \\[12pt]
 \end{align*}
+
+\begin{align*}
+    \der{\Delta x_r}
+    &=
+    \begin{bmatrix}
+        -\dfrac{R_s}{L_s} & \omega & -\dfrac{m_{r0}^d}{2 \cdot L_s}  & 0 \\
+        -\omega & -\dfrac{R_s}{L_s} & -\dfrac{m_{r0}^q}{2 \cdot L_s} & 0 \\
+        \dfrac{m_{r0}^d}{2 \cdot C_{dc}} & \dfrac{m_{r0}^q}{2 \cdot C_{dc}} & -\dfrac{1}{R_{dc} C_{dc}} & \dfrac{1 - m_{b0}}{C_{dc}} \\
+        0 & 0 & -\dfrac{1 - m_{b0}}{L_{dc}} & \dfrac{-k_{pv}}{L_{dc}(I_{pv_{max}} - i_{pv0})}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Delta i_s^d(t) \\[10pt] \Delta i_s^q(t) \\[10pt] \Delta v_{dc}(t) \\[10pt] \Delta i_{PV}(t) 
+    \end{bmatrix}
+    \\ 
+    &+\begin{bmatrix}
+        -\dfrac{v_{dc0}}{2 \cdot L_s}  & 0 \\
+        0 & -\dfrac{v_{dc0}}{2 \cdot L_s}  \\
+        \dfrac{i_{s0}^d}{2 \cdot C_{dc}} \cdot & \dfrac{i_{s0}^q}{2 \cdot C_{dc}}  \\
+        0 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Delta m_r^d(t) \\[10pt] \Delta m_r^q(t)
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0 \\[5pt] 0 \\[5pt] -\frac{i_{PV0}}{C_{dc}} \\[5pt] \frac{v_{dc0}}{L_{dc}}
+    \end{bmatrix}
+    \Delta m_b(t) + 
+    \begin{bmatrix}
+        \frac{1}{L_s} & 0 \\[5pt] 0 & \frac{1}{L_s} \\[5pt] 0 & 0 \\[5pt] 0 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        \Delta v_s^d(t) \\[10pt] \Delta v_s^q(t)
+    \end{bmatrix}
+\end{align*}
 \end{document}
